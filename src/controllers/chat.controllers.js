@@ -2,7 +2,6 @@
 const express = require("express");
 const http = require("http");
 const app = express();
-
   //Inicializamos socketio
   const socketio = require("socket.io");
   const io = socketio(servidor);
