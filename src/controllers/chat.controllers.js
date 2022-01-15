@@ -1,36 +1,23 @@
-//Servidor con express
-const express = require("express");
-const http = require("http");
-const app = express();
-  //Inicializamos socketio
-  const socketio = require("socket.io");
-  const io = socketio(servidor);
+/*
+const { Server } = require("socket.io");
 
-  //Funcionalidad de socket.io en el servidor
-  io.on("connection", (socket) => {
-    let nombre;
 
-    socket.on("conectado", (nomb) => {
-      nombre = nomb;
-      //socket.broadcast.emit manda el mensaje a todos los clientes excepto al que ha enviado el mensaje
-      socket.broadcast.emit("mensajes", {
-        nombre: nombre,
-        mensaje: `${nombre} ha entrado en la sala del chat`,
-      });
-    });
+Server.on("connection", (socket) => {
+  console.log(`User Connected: ${socket.id}`);
 
-    socket.on("mensaje", (nombre, mensaje) => {
-      //io.emit manda el mensaje a todos los clientes conectados al chat
-      io.emit("mensajes", { nombre, mensaje });
-    });
-
-    socket.on("disconnect", () => {
-      io.emit("mensajes", {
-        servidor: "Servidor",
-        mensaje: `${nombre} ha abandonado la sala`,
-      });
-    });
+  socket.on("join_room", (data) => {
+    socket.join(data);
+    console.log(`User with ID: ${socket.id} joined room: ${data}`);
   });
- 
 
+  socket.on("send_message", (data) => {
+    socket.to(data.room).emit("receive_message", data);
+  });
 
+  socket.on("disconnect", () => {
+    console.log("User Disconnected", socket.id);
+  });
+});
+
+module.exports = Server;
+*/
